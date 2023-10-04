@@ -8,9 +8,9 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class ProductPage {
 
-    private SelenideElement productContent = $(By.className("product-content"));
-    private SelenideElement productTitle = $(By.className("name"));
-    private SelenideElement addToCartButton = $(By.cssSelector("a.btn")).shouldHave(text("Add to cart"));
+    private final SelenideElement productContent = $(By.className("product-content"));
+    private final SelenideElement productTitle = $(By.className("name"));
+    private final SelenideElement addToCartButton = $(By.cssSelector("a.btn")).shouldHave(text("Add to cart"));
 
 
     public ProductPage isDisplayed() {
