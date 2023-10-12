@@ -30,8 +30,8 @@ public class SmokeTests {
 
     @BeforeEach
     void setUp() {
-        Configuration.baseUrl = "https://www.demoblaze.com/";
-        open(Configuration.baseUrl);
+//        Configuration.baseUrl = "https://www.demoblaze.com/";
+//        open(Configuration.baseUrl);
 
     }
 
