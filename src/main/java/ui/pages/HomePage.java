@@ -6,18 +6,23 @@ import org.openqa.selenium.By;
 import ui.pages.components.TopNavigationPanel;
 
 import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Selenide.open;
 
 public class HomePage {
-
     public TopNavigationPanel topNavigationPanel;
     private final ElementsCollection itemCards = $$(By.className("card-title"));
 
     public HomePage() {
         this.topNavigationPanel = new TopNavigationPanel();
     }
+    public HomePage openPage() {
+        open("/");
+        return this;
+    }
 
-    public void selectProduct(String name) {
-        itemCards.findBy(Condition.text(name)).click();
+    public HomePage selectProduct(String name) {
+        itemCards.findBy(Condition.text(name)).shouldBe(Condition.visible).click();
+        return this;
     }
 
 }

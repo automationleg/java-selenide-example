@@ -23,7 +23,6 @@ public class ContactModal {
     private void enterEmail(String text) {
         fillInputField(recipientEmail, text);
     }
-
     private void enterMessage(String message) {
         fillInputField(messageText, message);
     }
@@ -38,7 +37,6 @@ public class ContactModal {
     public void isDisplayed() {
         title.should(Condition.appear);
     }
-
     public void isClosed() {
         title.should(Condition.disappear);
     }

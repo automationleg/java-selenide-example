@@ -1,5 +1,6 @@
 package demoblaze;
 
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.selenide.AllureSelenide;
@@ -16,10 +17,6 @@ import static com.codeborne.selenide.Selenide.closeWindow;
 import static com.codeborne.selenide.Selenide.open;
 
 public class SmokeTests {
-    private HomePage homePage;
-    private ProductPage productPage;
-    private CartPage cartPage;
-    private ContactModal contactModal;
 
     @BeforeAll
     public static void setBrowser() {
@@ -33,8 +30,9 @@ public class SmokeTests {
 
     @BeforeEach
     void setUp() {
-        open("https://www.demoblaze.com/");
-        homePage = new HomePage();
+        Configuration.baseUrl = "https://www.demoblaze.com/";
+        open(Configuration.baseUrl);
+
     }
 
     @AfterEach
@@ -44,25 +42,21 @@ public class SmokeTests {
 
     @Test
     void testBuyingPhone() {
+        HomePage homePage = new HomePage();
         homePage.selectProduct("Sony xperia z5");
-
-        productPage = new ProductPage();
-        productPage.isDisplayed();
-        productPage.productTitleIsDisplayed("Sony xperia z5").addToCart();
+        new ProductPage().productTitleIsDisplayed("Sony xperia z5").addToCart();
 
         homePage.topNavigationPanel.clickOn("Cart");
-
-        cartPage = new CartPage();
-        cartPage.validateNumberOfAddedItems(1);
+        new CartPage().validateNumberOfAddedItems(1);
 
     }
 
     @Test
     void sendContactMessage() {
-        homePage.topNavigationPanel.clickOn("Contact");
+        new HomePage().topNavigationPanel.clickOn("Contact");
 
-        contactModal = new ContactModal();
-        contactModal.sendMessage("Krzysztof", "kramuk@test.pl", "Test message");
+        ContactModal contactModal = new ContactModal();
+        contactModal.sendMessage("Krzysztof", "krzysztof@test.pl", "Test message");
         contactModal.isClosed();
     }
 }
