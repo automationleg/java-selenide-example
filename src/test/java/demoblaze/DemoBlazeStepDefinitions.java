@@ -1,3 +1,5 @@
+package demoblaze;
+
 import com.codeborne.selenide.Selenide;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
